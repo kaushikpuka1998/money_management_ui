@@ -14,3 +14,9 @@ Page Design:
 ![](images/Page5.png)
 
 
+If the project after cloning not working and shows "Flutter : Target file “lib/main.dart” not found"
+then goes to the terminal and execute the command
+
+flutter run -t lib/main_dev.dart
+
+

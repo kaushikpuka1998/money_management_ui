@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../card_model.dart';
+import '../data_model.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,6 +12,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
+  int current = 0;
 
   List<T> map<T>(List list,Function handler)
   {
@@ -171,16 +173,62 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: const EdgeInsets.only(top:16.0,left: 16,bottom: 20),
                   child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: <Widget>[
                       Text("Operations",style: GoogleFonts.inter(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
                       ),),
-                      Container(
+                      Row(
 
+                        children: map<Widget>(datas,(index,selected)
+                        {
+                          return Container(
+
+                            alignment: Alignment.centerLeft,
+                            height: 9,
+                            width: 9,
+                            margin: EdgeInsets.only(right: 8),
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: current==index?Colors.blue:Colors.grey,
+                            ),
+                          );
+                        }),
                       )
                     ],
                   ),
+                ),
+
+                Container(
+                  height: 130,
+                  child: ListView.builder(
+
+                    itemCount: datas.length,
+                      padding: EdgeInsets.only(left: 12),
+                      scrollDirection: Axis.horizontal,
+
+                      itemBuilder: (context,index) {
+
+                      return GestureDetector(
+
+                        onTap: ()
+                        {
+                          setState(() {
+                            current = index;
+                          });
+                        },
+                        child: OperationCard (
+
+                          operation: datas[index].details,
+                          selectedIcon: datas[index].image,
+                          unselectedIcon: datas[index].image,
+                          isSelected: current==index,
+                          context : this,
+
+                        ),
+                      );
+                      }),
                 )
               ],
             ),
@@ -188,3 +236,60 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 }
+
+class OperationCard extends StatefulWidget {
+
+  final String operation;
+  final String selectedIcon;
+  final String unselectedIcon;
+  final bool isSelected;
+
+  _HomeScreenState context;
+
+  OperationCard(
+  {this.operation, this.selectedIcon, this.unselectedIcon, this.isSelected,this.context});
+
+  @override
+  _OperationCardState createState() => _OperationCardState();
+}
+
+class _OperationCardState extends State<OperationCard> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.only(right: 15),
+      width: 135,
+      height: 125,
+      decoration: BoxDecoration(
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black,
+            blurRadius: 7,
+            spreadRadius: 3,
+            offset: Offset(6,6),
+          )
+        ],
+
+        borderRadius: BorderRadius.circular(10),
+          color: widget.isSelected?Colors.blue:Colors.white
+      ),
+
+      child: Column(
+        children: <Widget>[
+          SizedBox(height: 18,),
+          SvgPicture.asset(widget.isSelected?widget.selectedIcon:widget.unselectedIcon,height: 60,width: 60,),
+
+          SizedBox(height: 10,),
+          
+          Text(widget.operation,textAlign:TextAlign.center,style: GoogleFonts.inter(
+            fontSize: 15,
+            fontWeight: FontWeight.bold,
+            color:widget.isSelected?Colors.white:Colors.blue
+          ),)
+        ],
+      ),
+
+    );
+  }
+}
+

@@ -54,11 +54,15 @@ flutter:
     - images/mastercard.png
     - images/visa.png
     - images/chip.jpg
-    - images/withdrawal.png
-    - images/moneytransaction.png
-    - images/check.svg
-    - images/moneywithdrawal.svg
-    - images/transfer.svg
+
+    - images/checkselected.svg
+    - images/checkunselected.svg
+    - images/withdrawunselected.svg
+    - images/withdrawselected.svg
+    - images/transactionselected.svg
+    - images/transactionunselected.svg
+
+
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -1,16 +1,17 @@
 class Datas {
 
 
-  String details, image;
+  String details, simage,uimage;
 
 
-  Datas(this.details, this.image);
+  Datas(this.details, this.simage,this.uimage);
 
 }
 
   List<Datas>datas = datadetails.map((e) => Datas(
     e['details'],
-    e['image'],
+    e['simage'],
+    e['uimage']
   ),
   ).toList();
 
@@ -18,15 +19,18 @@ class Datas {
 var datadetails = [
   {
     "details":"Money Transfer",
-    "image": "images/transfer.svg"
+    "simage": "images/transactionselected.svg",
+    "uimage": "images/transactionunselected.svg"
   },
   {
     "details":"Withdrawal",
-    "image": "images/moneywithdrawal.svg"
+    "simage": "images/withdrawselected.svg",
+    "uimage": "images/withdrawunselected.svg"
   },
   {
     "details":"Check",
-    "image": "images/check.svg"
+    "simage": "images/checkselected.svg",
+    "uimage":"images/checkunselected.svg"
   },
 
 

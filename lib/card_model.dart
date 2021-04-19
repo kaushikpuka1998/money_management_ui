@@ -30,7 +30,7 @@ var cardData = [
   ,
 
   {
-    "user": "Gourab Banik",
+    "user": "Kaushik Ghosh",
     "cardNumber": "**** **** **** 9785",
     "cardexpire": "07/22",
     "cardtype": "images/mastercard.png",
@@ -39,7 +39,7 @@ var cardData = [
   },
 
   {
-    "user": "Swapnoneel Barua",
+    "user": "Kaushik Ghosh",
     "cardNumber": "**** **** **** 2478",
     "cardexpire": "11/25",
     "cardtype": "images/visa.png",

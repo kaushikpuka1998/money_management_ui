@@ -93,11 +93,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 200,
                   child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    padding: EdgeInsets.only(left: 12,right:12),
+                    padding: EdgeInsets.only(left: 10,right:10),
                     itemCount: cards.length,
                     itemBuilder: (context,index){
                       return Container(
-                        margin: EdgeInsets.only(right: 10),
+                        margin: EdgeInsets.only(right: 5),
                         height: 200,
                         width: 350,
                         decoration: BoxDecoration(
@@ -178,6 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       Text("Operations",style: GoogleFonts.inter(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
+                        color: Colors.black
                       ),),
                       Row(
 
@@ -191,7 +192,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             margin: EdgeInsets.only(right: 8),
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
-                              color: current==index?Colors.blue:Colors.grey,
+                              color: current==index?Colors.deepPurple:Colors.grey,
                             ),
                           );
                         }),
@@ -221,15 +222,57 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: OperationCard (
 
                           operation: datas[index].details,
-                          selectedIcon: datas[index].image,
-                          unselectedIcon: datas[index].image,
+                          selectedIcon: datas[index].simage,
+                          unselectedIcon: datas[index].uimage,
                           isSelected: current==index,
                           context : this,
 
                         ),
                       );
                       }),
-                )
+                ),
+
+
+                //Transactions
+                Padding(
+                  padding: const EdgeInsets.only(top:16.0,left: 16,bottom: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text("Transaction history",style: GoogleFonts.inter(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black
+                      ),),
+
+                    ],
+                  ),
+                ),
+                ListView.builder(
+
+                    itemCount: 5,
+                    padding: EdgeInsets.only(left: 15,right: 15),
+                    shrinkWrap: true,
+                    itemBuilder: (context,index){
+                      return Container(
+                        height: 57,
+                        margin: EdgeInsets.only(bottom: 15),
+                        padding: EdgeInsets.only(left: 24,right: 24,top: 12,bottom: 12),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(12),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.white10,
+                              blurRadius: 20,
+                              spreadRadius: 5,
+                              offset: Offset(8.0,5.0)
+
+                            )
+                          ]
+                        ),
+                      );
+                }),
+
               ],
             ),
           ),
@@ -257,21 +300,21 @@ class _OperationCardState extends State<OperationCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(right: 15),
+      margin: EdgeInsets.only(right: 12),
       width: 135,
       height: 125,
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.black,
-            blurRadius: 7,
-            spreadRadius: 3,
-            offset: Offset(6,6),
+            color: Colors.grey,
+            blurRadius: 1,
+            spreadRadius: 0,
+
           )
         ],
 
         borderRadius: BorderRadius.circular(10),
-          color: widget.isSelected?Colors.blue:Colors.white
+          color: widget.isSelected?Colors.deepPurple:Colors.white
       ),
 
       child: Column(

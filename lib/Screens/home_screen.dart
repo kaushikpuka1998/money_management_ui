@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:money_management_ui/Transaction_model.dart';
 
 import '../card_model.dart';
 import '../data_model.dart';
@@ -250,25 +251,69 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 ListView.builder(
 
-                    itemCount: 5,
+                    itemCount: transactiond.length,
                     padding: EdgeInsets.only(left: 15,right: 15),
                     shrinkWrap: true,
                     itemBuilder: (context,index){
                       return Container(
-                        height: 57,
+                        height: 65,
                         margin: EdgeInsets.only(bottom: 15),
-                        padding: EdgeInsets.only(left: 24,right: 24,top: 12,bottom: 12),
+                        padding: EdgeInsets.only(left: 10,right: 20,top: 12,bottom: 12),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(12),
                           boxShadow: [
                             BoxShadow(
-                              color: Colors.white10,
+                              color: Colors.white12,
                               blurRadius: 20,
                               spreadRadius: 5,
-                              offset: Offset(8.0,5.0)
+                              offset: Offset(8.0,8.0)
 
                             )
                           ]
+                        ),
+                        child: Row(
+                          mainAxisAlignment:MainAxisAlignment.spaceBetween,
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Container(
+                                  height:60,
+                                  width: 60,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(image: AssetImage(transactiond[index].image))
+                                  ),
+                                ),
+                                SizedBox(width: 12,),
+                                Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  children: <Widget>[
+                                    Text(transactiond[index].name,textAlign: TextAlign.start,style: GoogleFonts.inter(
+                                      fontWeight: FontWeight.w800,fontSize: 15,color: Colors.black
+                                    ),),
+                                    Text(transactiond[index].date,textAlign: TextAlign.start,style: GoogleFonts.inter(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w500,color: Colors.red)
+                                      ,),
+
+
+
+                                  ],
+                                )
+                              ],
+                            ),
+                            Row(
+                              children: <Widget>[
+
+                                Text(transactiond[index].amount,style: GoogleFonts.inter(
+                                  fontSize: 15,
+                                  fontWeight: FontWeight.w700,
+                                  color: transactiond[index].amount[0] == '+'?Colors.green:Colors.red,
+                                ),)
+                              ],
+                            )
+                          ],
                         ),
                       );
                 }),
